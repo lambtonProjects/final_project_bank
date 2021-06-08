@@ -20,8 +20,7 @@ The system can do the following:
   6. Any other tasks you would like to add
 
 Note:
-● There are different types of bank accounts, you should google it to know more
-● You can’t use any type of collection, so the number of clients or accounts is flexible.
-● If you find you need further details or you have any questions about the system which
-are not mentioned here in the description, then you can decide by yourself..
-● The description here is giving you the minimum requirements, only.
+  ● There are different types of bank accounts, you should google it to know more
+  ● You can’t use any type of collection, so the number of clients or accounts is flexible.
+  ● If you find you need further details or you have any questions about the system which are not mentioned here in the description, then you can decide by yourself..
+  ● The description here is giving you the minimum requirements, only.
