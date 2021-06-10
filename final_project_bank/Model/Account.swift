@@ -6,22 +6,23 @@
 //
 
 import Foundation
-
 class Account {
     
     var accountId: Int
     var clientId: Int
-    var clientName: String
+    //var clientName: String
     var accountType: String
     var amount: Double
+    var withdraw:Bool
     
     //initialize the properities
-    init(accountId: Int, clientId: Int, clientName: String, accountType: String, amount: Double){
+    init(accountId: Int, clientId: Int, accountType: String, amount: Double, withdraw:Bool){
         self.accountId = accountId
         self.clientId = clientId
-        self.clientName = clientName
+        //self.clientName = clientName
         self.accountType = accountType
         self.amount = amount
+        self.withdraw = withdraw
     }
 
     // Display the current balllance
@@ -48,17 +49,19 @@ class Account {
         //todo: add update to file
     }
     
+    func printDetails(){
+        print("accountId:\(self.accountId)    clientId:\(self.clientId)   accountType:\(self.accountType)   amount:\(self.amount)   withdraw:\(self.withdraw)")
+    }
     
     //MARK: File Utility Functions of Account
     func fileRepresentation() -> String {
-        return "\(accountId),\(clientId),\(clientName),\(accountType),\(amount)\n"
+        return "\(accountId),\(clientId),\(accountType),\(amount),\(withdraw)\n"
     }
     
     static func parseFileRepresentation(str: String) -> Account {
         let tokenized = str.components(separatedBy: ",")
-        return Account(accountId: Int(tokenized[0])!, clientId: Int(tokenized[1])!, clientName: tokenized[2], accountType: tokenized[3], amount: Double(tokenized[4])!)
+        return Account(accountId: Int(tokenized[0])!, clientId: Int(tokenized[1])!, accountType: tokenized[2], amount: Double(tokenized[3])!, withdraw: Bool(tokenized[4])!)
     //---------------------------------------------
-        
-        
     }
 }
+
