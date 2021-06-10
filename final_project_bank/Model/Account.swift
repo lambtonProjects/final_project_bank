@@ -47,4 +47,18 @@ class Account {
         acc.amount = acc.amount + sum
         //todo: add update to file
     }
+    
+    
+    //MARK: File Utility Functions of Account
+    func fileRepresentation() -> String {
+        return "\(accountId),\(clientId),\(clientName),\(accountType),\(amount)\n"
+    }
+    
+    static func parseFileRepresentation(str: String) -> Account {
+        let tokenized = str.components(separatedBy: ",")
+        return Account(accountId: Int(tokenized[0])!, clientId: Int(tokenized[1])!, clientName: tokenized[2], accountType: tokenized[3], amount: Double(tokenized[4])!)
+    //---------------------------------------------
+        
+        
+    }
 }

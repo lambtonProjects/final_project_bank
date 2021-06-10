@@ -33,3 +33,15 @@ import Foundation
  6 - transfer the money to another account
  7 - pay the bills
  */
+
+let account = Account(accountId: 1, clientId: 1, clientName: "Test", accountType: "Saving", amount: 100000)
+let account2 = Account(accountId: 2, clientId: 1, clientName: "Test2", accountType: "Checking", amount: 1000)
+let account3 = Account(accountId: 3, clientId: 1, clientName: "Hello", accountType: "Saving", amount: 256000)
+let account4 = Account(accountId: 4, clientId: 1, clientName: "Mercedes", accountType: "Saving", amount: 256000)
+
+
+
+AccountUtil.saveAccount(accountToSave: account)
+AccountUtil.saveAccount(accountToSave: account2)
+AccountUtil.saveAccount(accountToSave: account3)
+AccountUtil.saveAccount(accountToSave: account4)

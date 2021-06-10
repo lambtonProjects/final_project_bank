@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46D0E83E2671BF9600A8DF98 /* CheckingAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D0E83D2671BF9600A8DF98 /* CheckingAccount.swift */; };
+		46D0E8402671BFA100A8DF98 /* SavingAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D0E83F2671BFA100A8DF98 /* SavingAccount.swift */; };
+		46D0E8432671C05D00A8DF98 /* FileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D0E8422671C05D00A8DF98 /* FileUtil.swift */; };
+		46D0E8452671C79400A8DF98 /* AccountUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D0E8442671C79400A8DF98 /* AccountUtil.swift */; };
 		EB2C50E4266FF58500B9E4C2 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2C50E3266FF58500B9E4C2 /* main.swift */; };
-		EB83E37A2670F59B00E5AF8E /* account.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB83E3792670F59B00E5AF8E /* account.swift */; };
+		EB83E37A2670F59B00E5AF8E /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB83E3792670F59B00E5AF8E /* Account.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,9 +28,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		46D0E83D2671BF9600A8DF98 /* CheckingAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckingAccount.swift; sourceTree = "<group>"; };
+		46D0E83F2671BFA100A8DF98 /* SavingAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingAccount.swift; sourceTree = "<group>"; };
+		46D0E8422671C05D00A8DF98 /* FileUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtil.swift; sourceTree = "<group>"; };
+		46D0E8442671C79400A8DF98 /* AccountUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountUtil.swift; sourceTree = "<group>"; };
 		EB2C50E0266FF58500B9E4C2 /* final_project_bank */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = final_project_bank; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB2C50E3266FF58500B9E4C2 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		EB83E3792670F59B00E5AF8E /* account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = account.swift; sourceTree = "<group>"; };
+		EB83E3792670F59B00E5AF8E /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +48,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		46D0E83C2671BF7900A8DF98 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EB83E3792670F59B00E5AF8E /* Account.swift */,
+				46D0E83D2671BF9600A8DF98 /* CheckingAccount.swift */,
+				46D0E83F2671BFA100A8DF98 /* SavingAccount.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		46D0E8412671C05200A8DF98 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				46D0E8422671C05D00A8DF98 /* FileUtil.swift */,
+				46D0E8442671C79400A8DF98 /* AccountUtil.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		EB2C50D7266FF58500B9E4C2 = {
 			isa = PBXGroup;
 			children = (
@@ -59,7 +86,8 @@
 		EB2C50E2266FF58500B9E4C2 /* final_project_bank */ = {
 			isa = PBXGroup;
 			children = (
-				EB83E3792670F59B00E5AF8E /* account.swift */,
+				46D0E8412671C05200A8DF98 /* Util */,
+				46D0E83C2671BF7900A8DF98 /* Model */,
 				EB2C50E3266FF58500B9E4C2 /* main.swift */,
 			);
 			path = final_project_bank;
@@ -122,8 +150,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46D0E8452671C79400A8DF98 /* AccountUtil.swift in Sources */,
 				EB2C50E4266FF58500B9E4C2 /* main.swift in Sources */,
-				EB83E37A2670F59B00E5AF8E /* account.swift in Sources */,
+				EB83E37A2670F59B00E5AF8E /* Account.swift in Sources */,
+				46D0E83E2671BF9600A8DF98 /* CheckingAccount.swift in Sources */,
+				46D0E8402671BFA100A8DF98 /* SavingAccount.swift in Sources */,
+				46D0E8432671C05D00A8DF98 /* FileUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +281,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -258,6 +291,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
