@@ -8,7 +8,6 @@
 import Foundation
 
 class FileUtil {
-    
     var localFileUrl : URL?
     
     private static func getDocumentsDirectory() -> URL {
@@ -16,13 +15,12 @@ class FileUtil {
         return paths[0]
     }
     
-    init() {
-        localFileUrl = FileUtil.getDocumentsDirectory().appendingPathComponent("source.txt")
+    init(nameFile: String) {
+        localFileUrl = FileUtil.getDocumentsDirectory().appendingPathComponent(nameFile)
     }
     
     
     func writeToFile(str : String) {
-        
         do {
             try str.write(to: localFileUrl!, atomically: true, encoding: String.Encoding.utf8)
         } catch {
@@ -31,7 +29,6 @@ class FileUtil {
     }
     
      func readLines() -> [String] {
-        
         do {
             let data = try String(contentsOf: localFileUrl!, encoding: .utf8)
             let lines = data.components(separatedBy: .newlines)

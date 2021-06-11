@@ -12,10 +12,13 @@
 		46D0E8432671C05D00A8DF98 /* FileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D0E8422671C05D00A8DF98 /* FileUtil.swift */; };
 		46D0E8452671C79400A8DF98 /* AccountUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D0E8442671C79400A8DF98 /* AccountUtil.swift */; };
 		EB2C50E4266FF58500B9E4C2 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2C50E3266FF58500B9E4C2 /* main.swift */; };
-		EB736BB22671E0F000CC7190 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB736BB12671E0F000CC7190 /* user.swift */; };
-		EB736BB42671E13E00CC7190 /* client.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB736BB32671E13E00CC7190 /* client.swift */; };
-		EB736BB62671E16D00CC7190 /* operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB736BB52671E16D00CC7190 /* operator.swift */; };
+		EB736BB22671E0F000CC7190 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB736BB12671E0F000CC7190 /* User.swift */; };
+		EB736BB42671E13E00CC7190 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB736BB32671E13E00CC7190 /* Client.swift */; };
+		EB736BB62671E16D00CC7190 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB736BB52671E16D00CC7190 /* Operator.swift */; };
 		EB83E37A2670F59B00E5AF8E /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB83E3792670F59B00E5AF8E /* Account.swift */; };
+		EBFDE5742672CC4C0000AF3E /* ClientUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFDE5732672CC4C0000AF3E /* ClientUtil.swift */; };
+		EBFDE5762672CC990000AF3E /* TransactionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFDE5752672CC990000AF3E /* TransactionUtil.swift */; };
+		EBFDE5782672F31F0000AF3E /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFDE5772672F31F0000AF3E /* Transaction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,10 +40,13 @@
 		46D0E8442671C79400A8DF98 /* AccountUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountUtil.swift; sourceTree = "<group>"; };
 		EB2C50E0266FF58500B9E4C2 /* final_project_bank */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = final_project_bank; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB2C50E3266FF58500B9E4C2 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		EB736BB12671E0F000CC7190 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
-		EB736BB32671E13E00CC7190 /* client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = client.swift; sourceTree = "<group>"; };
-		EB736BB52671E16D00CC7190 /* operator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = operator.swift; sourceTree = "<group>"; };
+		EB736BB12671E0F000CC7190 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		EB736BB32671E13E00CC7190 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		EB736BB52671E16D00CC7190 /* Operator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operator.swift; sourceTree = "<group>"; };
 		EB83E3792670F59B00E5AF8E /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		EBFDE5732672CC4C0000AF3E /* ClientUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientUtil.swift; sourceTree = "<group>"; };
+		EBFDE5752672CC990000AF3E /* TransactionUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionUtil.swift; sourceTree = "<group>"; };
+		EBFDE5772672F31F0000AF3E /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,7 @@
 				EB83E3792670F59B00E5AF8E /* Account.swift */,
 				46D0E83D2671BF9600A8DF98 /* CheckingAccount.swift */,
 				46D0E83F2671BFA100A8DF98 /* SavingAccount.swift */,
+				EBFDE5772672F31F0000AF3E /* Transaction.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -69,6 +76,8 @@
 			children = (
 				46D0E8422671C05D00A8DF98 /* FileUtil.swift */,
 				46D0E8442671C79400A8DF98 /* AccountUtil.swift */,
+				EBFDE5732672CC4C0000AF3E /* ClientUtil.swift */,
+				EBFDE5752672CC990000AF3E /* TransactionUtil.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -95,9 +104,9 @@
 				46D0E8412671C05200A8DF98 /* Util */,
 				46D0E83C2671BF7900A8DF98 /* Model */,
 				EB2C50E3266FF58500B9E4C2 /* main.swift */,
-				EB736BB12671E0F000CC7190 /* user.swift */,
-				EB736BB32671E13E00CC7190 /* client.swift */,
-				EB736BB52671E16D00CC7190 /* operator.swift */,
+				EB736BB12671E0F000CC7190 /* User.swift */,
+				EB736BB32671E13E00CC7190 /* Client.swift */,
+				EB736BB52671E16D00CC7190 /* Operator.swift */,
 			);
 			path = final_project_bank;
 			sourceTree = "<group>";
@@ -161,11 +170,14 @@
 			files = (
 				46D0E8452671C79400A8DF98 /* AccountUtil.swift in Sources */,
 				EB2C50E4266FF58500B9E4C2 /* main.swift in Sources */,
-				EB736BB42671E13E00CC7190 /* client.swift in Sources */,
+				EBFDE5762672CC990000AF3E /* TransactionUtil.swift in Sources */,
+				EBFDE5742672CC4C0000AF3E /* ClientUtil.swift in Sources */,
+				EB736BB42671E13E00CC7190 /* Client.swift in Sources */,
 				EB83E37A2670F59B00E5AF8E /* Account.swift in Sources */,
-				EB736BB22671E0F000CC7190 /* user.swift in Sources */,
+				EBFDE5782672F31F0000AF3E /* Transaction.swift in Sources */,
+				EB736BB22671E0F000CC7190 /* User.swift in Sources */,
 				46D0E83E2671BF9600A8DF98 /* CheckingAccount.swift in Sources */,
-				EB736BB62671E16D00CC7190 /* operator.swift in Sources */,
+				EB736BB62671E16D00CC7190 /* Operator.swift in Sources */,
 				46D0E8402671BFA100A8DF98 /* SavingAccount.swift in Sources */,
 				46D0E8432671C05D00A8DF98 /* FileUtil.swift in Sources */,
 			);

@@ -12,9 +12,9 @@ var userList = [User]()
 
 //Funtion to create a new Client
 func createClient(){
-    print("Enter identified number:")
+    print("Insert identified number:")
     let userId=Int(readLine()!)!
-    print("Enter Name:")
+    print("Insert Name:")
     let name=readLine()!
     print("Choose:\n1.Client\n2.User")
     if Int(readLine()!)! == 1{
@@ -22,7 +22,10 @@ func createClient(){
         let phone=Int(readLine()!)!
         print("Enter Address:")
         let address=readLine()!
-        userList.append(Client(userId: userId, userName: name, phone: phone, address: address))
+        
+        let client=Client(userId: userId, userName: name, phone: phone, address: address)
+        ClientUtil.saveClient(clientToSave: client)
+        //userList.append(Client(userId: userId, userName: name, phone: phone, address: address))
     }else{
         print("Enter Alias:")
         let alias=readLine()!
@@ -37,26 +40,48 @@ func createClient(){
 //}
 
 //Function to create account for a user that already exists
-func createBankAcount(){
-    print("Crear Cuenta, ahora si!")
+func createBankAcount(client: Client){
+    print("Insert account identified number:")
+    let accountId=Int(readLine()!)!
+    
+    print("Choose:\n1.Checkings\n2.Savings")
+    if Int(readLine()!)! == 1{
+        let account=CheckingAccount(accountId: accountId, clientId: client.userId)
+        AccountUtil.saveAccount(accountToSave: account)
+    }else{
+        let account = SavingAccount(accountId: accountId, clientId: client.userId)
+        AccountUtil.saveAccount(accountToSave: account)
+    }
 }
 
-func findUser(number:Int, userList:[User])->User!{
-    for user in userList {
-        if user.userId == number {
-            return user
+func findUser(number:Int, clientList:[User])->User!{
+    for client in clientList {
+        if client.userId == number {
+            return client
         }
     }
     return nil
 }
 
+func findAccountBy(client: Client){
+    let accountList = AccountUtil.getAccounts()
+    for account in accountList {
+        if account.clientId == client.userId {
+            account.printDetails()
+        }
+    }
+}
+
 func bankWorkerOption(){
     repeat{
         print("////////////////////////📋 Menu Bank Worker 📋/////////////////////////")
-        print("1. Create a New User")
+        print("1. Create a Client")
         print("2. Update Client")
         print("3. Create Bank Account")
-        print("4. Exit")
+        print("4. List all Clients")
+        print("5. Show details of a client")
+        print("6. Show details/transactions of a account")
+        print("7. Exit")
         print("///////////////////////////////////////////////////////////////////////")
         print("Choose...")
         let menu = Int(readLine()!)!
@@ -64,34 +89,76 @@ func bankWorkerOption(){
         case 1:
             createClient()
         case 2:
-            print("Find identified number: ")
+            print("Insert identified number: ")
             let no=Int(readLine()!)!
-            let client=findUser(number: no, userList: userList)
+            let clientList = ClientUtil.getClients()
+            
+            let client=findUser(number: no, clientList: clientList)
             if client != nil {
                 client?.printDetails()
-                if client!.isClient {
+                if client is Client {
                     //updateCliente()
                 }else{
-                    print("the identifier number is not from a client ⛔️")
+                    print("the identifier number is not from a client ⛔️\n")
                 }
             }else{
-                print("the client does not exist ⛔️")
+                print("the client does not exist ⛔️\n")
             }
         case 3:
             print("Find identified number: ")
             let no=Int(readLine()!)!
-            let client=findUser(number: no, userList: userList)
+            let clientList = ClientUtil.getClients()
+            
+            let client=findUser(number: no, clientList: clientList)
             if client != nil {
                 client?.printDetails()
-                if client!.isClient {
-                    //createBankAcount()
+                if client is Client {
+                    createBankAcount(client: client! as! Client)
                 }else{
-                    print("the identifier number is not from a client ⛔️")
+                    print("the identifier number is not from a client ⛔️\n")
                 }
             }else{
-                print("the client does not exist ⛔️")
+                print("the client does not exist ⛔️\n")
             }
         case 4:
+            print("List all Client ")
+            let clientList = ClientUtil.getClients()
+            for client in clientList {
+                client.printDetails()
+            }
+        case 5: //Show details of a client
+            print("Find identified number: ")
+            let no=Int(readLine()!)!
+            let clientList = ClientUtil.getClients()
+            
+            let client=findUser(number: no, clientList: clientList)
+            if client != nil {
+                client?.printDetails()
+                if client is Client {
+                    findAccountBy(client: client! as! Client)
+                }else{
+                    print("the identifier number is not from a client ⛔️\n")
+                }
+            }else{
+                print("the client does not exist ⛔️\n")
+            }
+        case 6: //Show details/transactions of a account
+            print("Find identified account number: ")
+//            let no=Int(readLine()!)!
+//            let accountList = AccountUtil.getAccounts()
+            
+//            let account=findAccountBy(client: <#T##Client#>)
+//            if account != nil {
+//                account?.printDetails()
+//                if client is Client {
+//                    findAccountBy(client: client! as! Client)
+//                }else{
+//                    print("the identifier number is not from a account ⛔️\n")
+//                }
+//            }else{
+//                print("the account does not exist ⛔️\n")
+//            }
+        case 7:
             optBw = false
         default:
             print("Wrong Option⛔️")
@@ -174,15 +241,15 @@ print("Thanks... 😊")
  6 - transfer the money to another account
  7 - pay the bills
  */
-
-let account = Account(accountId: 1, clientId: 1, accountType: "Saving", amount: 100000, withdraw: true)
-let account2 = Account(accountId: 2, clientId: 1, accountType: "Checking", amount: 1000, withdraw: true)
-let account3 = Account(accountId: 3, clientId: 1, accountType: "Saving", amount: 256000, withdraw: true)
-let account4 = Account(accountId: 4, clientId: 1, accountType: "Saving", amount: 256000, withdraw: true)
-
-
-
-AccountUtil.saveAccount(accountToSave: account)
-AccountUtil.saveAccount(accountToSave: account2)
-AccountUtil.saveAccount(accountToSave: account3)
-AccountUtil.saveAccount(accountToSave: account4)
+//
+//let account = Account(accountId: 1, clientId: 1, accountType: "Saving", amount: 100000, withdraw: true)
+//let account2 = Account(accountId: 2, clientId: 1, accountType: "Checking", amount: 1000, withdraw: true)
+//let account3 = Account(accountId: 3, clientId: 1, accountType: "Saving", amount: 256000, withdraw: true)
+//let account4 = Account(accountId: 4, clientId: 1, accountType: "Saving", amount: 256000, withdraw: true)
+//
+//
+//
+//AccountUtil.saveAccount(accountToSave: account)
+//AccountUtil.saveAccount(accountToSave: account2)
+//AccountUtil.saveAccount(accountToSave: account3)
+//AccountUtil.saveAccount(accountToSave: account4)

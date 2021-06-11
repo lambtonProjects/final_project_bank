@@ -9,15 +9,13 @@ import Foundation
 class User {
     var userId: Int
     var userName: String
-    var isClient: Bool
     
-    init(userId:Int, userName:String, isClient:Bool) {
+    init(userId:Int, userName:String) {
         self.userId = userId
         self.userName = userName
-        self.isClient = isClient
     }
     
     func printDetails(){
-        print("Id:\(self.userId)    Name:\(self.userName)   isClient:\(self.isClient)")
+        print("👤Id:\(self.userId)    Name:\(self.userName)")
     }
 }

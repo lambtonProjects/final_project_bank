@@ -8,10 +8,11 @@
 import Foundation
 
 class CheckingAccount: Account {
-    var fees: Double
-    init(accountId: Int, clientId: Int, accountType: String, amount: Double, fees: Double) {
-        self.fees = fees
-        super.init(accountId: accountId, clientId: clientId, accountType: "checking", amount: amount, withdraw:true)
+    var fees = 0.05
+    
+    init(accountId: Int, clientId: Int) {
+        //self.fees = fees
+        super.init(accountId: accountId, clientId: clientId, accountType: "checking", amount: 0.0, withdraw:true)
     }
     override func printDetails() {
         super.printDetails()

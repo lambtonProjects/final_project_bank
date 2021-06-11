@@ -11,7 +11,7 @@ class Operator : User{
 
     init(userId: Int, userName: String, alias: String) {
         self.alias = alias
-        super.init(userId: userId, userName: userName, isClient:false)
+        super.init(userId: userId, userName: userName)
     }
     
     override func printDetails() {

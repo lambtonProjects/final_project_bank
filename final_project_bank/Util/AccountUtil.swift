@@ -8,7 +8,8 @@
 import Foundation
 
 class AccountUtil {
-    static var fileUtil = FileUtil()
+    static var fileUtil = FileUtil(nameFile: "acounts.txt")
+    
     static func getAccounts() -> [Account] {
         var accounts = [Account]()
         let lines = fileUtil.readLines().filter { strToFilter in
@@ -24,7 +25,6 @@ class AccountUtil {
     
     private static func convertToStringAndSave(accounts: [Account]) {
         var strToSave = ""
-        
         for account in accounts {
             strToSave += account.fileRepresentation()
         }
@@ -32,6 +32,7 @@ class AccountUtil {
     }
     
     static func saveAccount(accountToSave: Account) {
+        print("\nSave account here.. 💾")
         var accounts = AccountUtil.getAccounts()
         for (index, account) in  accounts.enumerated() {
             if account.accountId == accountToSave.accountId {
@@ -43,9 +44,8 @@ class AccountUtil {
         accounts.append(accountToSave)
         
         AccountUtil.convertToStringAndSave(accounts: accounts)
-        
     }
-    
+        
     static func deleteAccount(accountId: Int) {
         var accounts = AccountUtil.getAccounts()
         for (index, account) in accounts.enumerated() {
