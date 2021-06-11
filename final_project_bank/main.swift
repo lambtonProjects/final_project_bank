@@ -166,36 +166,106 @@ func bankWorkerOption(){
     }while optBw == true
 }
 
+func getClientAccounts(arrAccounts: [Account], clientId: Int) -> [Account] {
+    var accListForUser = [Account]()
+    for i in arrAccounts {
+        if i.clientId == clientId {
+            accListForUser.append(i)
+        }
+    }
+    return accListForUser
+}
+
+func findAccountByNumber(no: Int) -> Account{
+    let accountList = AccountUtil.getAccounts()
+    var acc = Account(accountId: 0, clientId: 0, accountType: "", amount: 0, withdraw: false)
+    for account in accountList {
+        if account.accountId == no {
+            acc = account
+        }
+    }
+    return acc
+}
+
 func clientOption(){
     repeat{
-        print("///////////////////////////📋 Menu Client 📋///////////////////////////")
-        print("1. Get account details")
-        print("2. Deposit")
-        print("3. Withdraw")
-        print("4. Transfer to another account")
-        print("5. Pay Bill")
-        print("6. Exit")
-        print("///////////////////////////////////////////////////////////////////////")
-        print("Choose...")
-        let menu = Int(readLine()!)!
-        switch menu {
-        case 1:
-            print("Get account details")
-        case 2:
-            print("Deposit the money")
-        case 3:
-            print("Draw the money")
-        case 4:
-            print("Transfer the money to another account")
-        case 5:
-            print("Pay Bill")
-        case 6:
-            optCl = false
-        default:
-            print("Wrong Option⛔️")
-        }
-
-    }while optCl == true
+        print("Please enter the client number")
+        let clientNo = Int(readLine()!)!
+        let clientList = ClientUtil.getClients()
+        let client = findUser(number: clientNo, clientList: clientList)
+        if client != nil {
+            if client is Client {
+                print("You have logged in successfully!\nWelcome", client?.userName ?? "Unknown","\nHere is the list of your accounts:\n ")
+                let accArray = AccountUtil.getAccounts()
+                print("/////////////////////////////////////\n")
+                if accArray.isEmpty {
+                    print("You have no accounts")
+                    optCl = false
+                } else {
+                    let clientAccounts = getClientAccounts(arrAccounts: accArray, clientId: clientNo)
+                    for item in clientAccounts {
+                        item.printDetails()
+                    }
+                    print("Enter the account number, that you wants to work with:")
+                    let accNo = Int(readLine()!)!
+                    let account = findAccountByNumber(no: accNo)
+                    print("///////////////////////////📋 Menu Client 📋///////////////////////////")
+                    print("1. Get account details")
+                    print("2. Deposit")
+                    print("3. Withdraw")
+                    print("4. Transfer to another account")
+                    print("5. Pay Bill")
+                    print("6. Exit")
+                    print("///////////////////////////////////////////////////////////////////////")
+                    print("Choose the operation")
+                    let menu = Int(readLine()!)!
+                    switch menu {
+                    case 1:
+                        print("Get account details")
+                        print("Your current balance is: ",account.getBalance())
+                    case 2:
+                        print("Deposit the money")
+                        print("Please Enter the amount:")
+                        let depAmount = Double(readLine()!)!
+                        account.addMoney(sum: depAmount)
+                        AccountUtil.saveAccount(accountToSave: account)
+                    case 3:
+                        print("Draw the money")
+                        print("Please Enter the amount:")
+                        let withdrowAmount = Double(readLine()!)!
+                        account.takeMoney(sum: withdrowAmount)
+                        AccountUtil.saveAccount(accountToSave: account)
+                    case 4:
+                        print("Transfer the money to another account")
+                        print("Please Enter the account number to which to transfer:")
+                        let trAccNo = Int(readLine()!)!
+                        let trAcc = findAccountByNumber(no: trAccNo)
+                        print("Please Enter the amount to transfer:")
+                        let trAmount = Double(readLine()!)!
+                        account.transferMoney(sum: trAmount, acc: trAcc)
+                        AccountUtil.saveAccount(accountToSave: account)
+                        AccountUtil.saveAccount(accountToSave: trAcc)
+                    case 5:
+                        print("Pay Bill")
+                        //print("Please Enter the number of the bill:")
+                        //let billNumber = Double(readLine()!)!
+                        print("Please Enter the amount of the bill:")
+                        let withdrowAmount = Double(readLine()!)!
+                        account.takeMoney(sum: withdrowAmount)
+                        AccountUtil.saveAccount(accountToSave: account)
+                    case 6:
+                        optCl = false
+                    default:
+                        print("Wrong Option⛔️")
+                    }
+                }
+                
+            }
+        } else {
+                print("This client number does not exists in the system")
+            }
+        
+    } while optCl == true
 }
 
 print("🏢 The Bank 🏢")
