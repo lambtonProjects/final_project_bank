@@ -10,7 +10,7 @@ var optBw = true
 var optCl = true
 var userList = [User]()
 
-//Funtion to create a new Client
+//Funtion to create a new Client or User*
 func createClient(){
     print("Insert identified number:")
     let userId=Int(readLine()!)!
@@ -41,15 +41,16 @@ func createClient(){
 
 //Function to create account for a user that already exists
 func createBankAcount(client: Client){
+    let initBalance = 0.0
     print("Insert account identified number:")
     let accountId=Int(readLine()!)!
     
     print("Choose:\n1.Checkings\n2.Savings")
     if Int(readLine()!)! == 1{
-        let account=CheckingAccount(accountId: accountId, clientId: client.userId)
+        let account=CheckingAccount(accountId: accountId, clientId: client.userId, amount: initBalance)
         AccountUtil.saveAccount(accountToSave: account)
     }else{
-        let account = SavingAccount(accountId: accountId, clientId: client.userId)
+        let account = SavingAccount(accountId: accountId, clientId: client.userId, amount: initBalance)
         AccountUtil.saveAccount(accountToSave: account)
     }
 }
@@ -63,11 +64,42 @@ func findUser(number:Int, clientList:[User])->User!{
     return nil
 }
 
+//Func to find one especific account with the client information
 func findAccountBy(client: Client){
     let accountList = AccountUtil.getAccounts()
     for account in accountList {
         if account.clientId == client.userId {
+            print("Accounts 💵")
             account.printDetails()
+        }else{
+            print("⚠️This client does not have accounts in this bank⚠️")
+        }
+    }
+}
+
+//Func to find one especific account with the account number and show all information aviable including balance
+func findAccountBy(number:Int){
+    let accountList = AccountUtil.getAccounts()
+    for account in accountList {
+        let accountId = account.accountId
+        if accountId == number {
+            print("\nAccount Info ℹ️")
+            account.printDetails()
+            print("Statements 💵")
+            print("transactionId       transactionType     accountId           amount")
+            listTransaction(accountId : accountId)
+        }else{
+            print("⚠️This account does not exist⚠️")
+        }
+    }
+}
+
+//Func to list all transacctions given account ID
+func listTransaction(accountId : Int){
+    let transactionList = TransactionUtil.getTransacctions()
+    for transaction in transactionList {
+        if transaction.accountId == accountId {
+            transaction.printDetails()
         }
     }
 }
@@ -126,7 +158,7 @@ func bankWorkerOption(){
             for client in clientList {
                 client.printDetails()
             }
-        case 5: //Show details of a client
+        case 5:
             print("Find identified number: ")
             let no=Int(readLine()!)!
             let clientList = ClientUtil.getClients()
@@ -144,20 +176,8 @@ func bankWorkerOption(){
             }
         case 6: //Show details/transactions of a account
             print("Find identified account number: ")
-//            let no=Int(readLine()!)!
-//            let accountList = AccountUtil.getAccounts()
-            
-//            let account=findAccountBy(client: <#T##Client#>)
-//            if account != nil {
-//                account?.printDetails()
-//                if client is Client {
-//                    findAccountBy(client: client! as! Client)
-//                }else{
-//                    print("the identifier number is not from a account ⛔️\n")
-//                }
-//            }else{
-//                print("the account does not exist ⛔️\n")
-//            }
+            let no=Int(readLine()!)!
+            findAccountBy(number: no)
         case 7:
             optBw = false
         default:
@@ -316,9 +336,7 @@ print("Thanks... 😊")
 //let account2 = Account(accountId: 2, clientId: 1, accountType: "Checking", amount: 1000, withdraw: true)
 //let account3 = Account(accountId: 3, clientId: 1, accountType: "Saving", amount: 256000, withdraw: true)
 //let account4 = Account(accountId: 4, clientId: 1, accountType: "Saving", amount: 256000, withdraw: true)
-//
-//
-//
+
 //AccountUtil.saveAccount(accountToSave: account)
 //AccountUtil.saveAccount(accountToSave: account2)
 //AccountUtil.saveAccount(accountToSave: account3)

@@ -20,7 +20,7 @@ class Transaction {
     }
     
     func printDetails() {
-        print("transactionId:\(self.transactionId)    transactionType:\(self.transactionType)   accountId:\(self.accountId)   amount:\(self.amount)")
+        print("\((String(self.transactionId)).padding(toLength: 20, withPad: " ", startingAt: 0))\((self.transactionType).padding(toLength: 20, withPad: " ", startingAt: 0))\((String(self.accountId)).padding(toLength: 20, withPad: " ", startingAt: 0))\(self.amount)")
     }
     
     //MARK: File Utility Functions of Account

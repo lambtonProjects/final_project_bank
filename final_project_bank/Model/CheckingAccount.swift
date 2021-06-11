@@ -10,9 +10,9 @@ import Foundation
 class CheckingAccount: Account {
     var fees = 0.05
     
-    init(accountId: Int, clientId: Int) {
+    init(accountId: Int, clientId: Int, amount: Double) {
         //self.fees = fees
-        super.init(accountId: accountId, clientId: clientId, accountType: "checking", amount: 0.0, withdraw:true)
+        super.init(accountId: accountId, clientId: clientId, accountType: "checking", amount: amount, withdraw:true)
     }
     override func printDetails() {
         super.printDetails()
