@@ -72,9 +72,6 @@ func findAccountBy(client: Client){
             print("Accounts 💵")
             account.printDetails()
         }
-//        else{
-//            print("⚠️This client does not have accounts in this bank⚠️")
-//        }
     }
 }
 
