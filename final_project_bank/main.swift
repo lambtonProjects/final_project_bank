@@ -41,16 +41,15 @@ func createClient(){
 
 //Function to create account for a user that already exists
 func createBankAcount(client: Client){
-    let initBalance = 0.0
     print("Insert account identified number:")
     let accountId=Int(readLine()!)!
     
     print("Choose:\n1.Checkings\n2.Savings")
     if Int(readLine()!)! == 1{
-        let account=CheckingAccount(accountId: accountId, clientId: client.userId, amount: initBalance)
+        let account=CheckingAccount(accountId: accountId, clientId: client.userId)
         AccountUtil.saveAccount(accountToSave: account)
     }else{
-        let account = SavingAccount(accountId: accountId, clientId: client.userId, amount: initBalance)
+        let account = SavingAccount(accountId: accountId, clientId: client.userId)
         AccountUtil.saveAccount(accountToSave: account)
     }
 }
@@ -184,6 +183,7 @@ func bankWorkerOption(){
     }while optBw == true
 }
 
+//func returns array of specific client accounts
 func getClientAccounts(arrAccounts: [Account], clientId: Int) -> [Account] {
     var accListForUser = [Account]()
     for i in arrAccounts {
@@ -194,6 +194,7 @@ func getClientAccounts(arrAccounts: [Account], clientId: Int) -> [Account] {
     return accListForUser
 }
 
+//function returns account inctance by account number
 func findAccountByNumber(no: Int) -> Account{
     let accountList = AccountUtil.getAccounts()
     var acc = Account(accountId: 0, clientId: 0, accountType: "", amount: 0, withdraw: false)
@@ -205,6 +206,7 @@ func findAccountByNumber(no: Int) -> Account{
     return acc
 }
 
+//func returns all client operations
 func clientOption(){
     repeat{
         print("Please enter the client number")
