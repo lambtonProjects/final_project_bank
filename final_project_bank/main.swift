@@ -22,22 +22,14 @@ func createClient(){
         let phone=Int(readLine()!)!
         print("Enter Address:")
         let address=readLine()!
-        
         let client=Client(userId: userId, userName: name, phone: phone, address: address)
         ClientUtil.saveClient(clientToSave: client)
-        //userList.append(Client(userId: userId, userName: name, phone: phone, address: address))
     }else{
         print("Enter Alias:")
         let alias=readLine()!
         userList.append(Operator(userId: userId, userName: name, alias: alias))
     }
 }
-
-////Function to update a user that already exists
-//func updateClient(userList:[Client]){
-//
-//
-//}
 
 //Function to create account for a user that already exists
 func createBankAcount(client: Client){
@@ -126,7 +118,13 @@ func bankWorkerOption(){
             if client != nil {
                 client?.printDetails()
                 if client is Client {
-                    //updateCliente()
+                    print("Insert new phone: ")
+                    let phone=Int(readLine()!)!
+                    print("Insert new Address: ")
+                    let address=readLine()!
+                    
+                    let clientUpdate=Client(userId: client!.userId, userName: client!.userName, phone: phone, address: address)
+                    ClientUtil.saveClient(clientToSave: clientUpdate)
                 }else{
                     print("the identifier number is not from a client ⛔️\n")
                 }
@@ -206,6 +204,10 @@ func findAccountByNumber(no: Int) -> Account{
     return acc
 }
 
+func nextTransaction()->Int{
+    return Int.random(in: 0...10000)
+}
+
 //func returns all client operations
 func clientOption(){
     repeat{
@@ -239,6 +241,7 @@ func clientOption(){
                     print("///////////////////////////////////////////////////////////////////////")
                     print("Choose the operation")
                     let menu = Int(readLine()!)!
+                    //let nextTransaction = Int.random(in: 1..<1000)
                     switch menu {
                     case 1:
                         print("Get account details")
@@ -249,12 +252,16 @@ func clientOption(){
                         let depAmount = Double(readLine()!)!
                         account.addMoney(sum: depAmount)
                         AccountUtil.saveAccount(accountToSave: account)
+                        let transaction = Transaction(accountId: account.accountId, transactionType: "deposit", transactionId: nextTransaction(), amount: depAmount)
+                        TransactionUtil.saveTransaction(transactionToSave: transaction)
                     case 3:
                         print("Draw the money")
                         print("Please Enter the amount:")
                         let withdrowAmount = Double(readLine()!)!
                         account.takeMoney(sum: withdrowAmount)
                         AccountUtil.saveAccount(accountToSave: account)
+                        let transaction = Transaction(accountId: account.accountId, transactionType: "draw", transactionId: nextTransaction(), amount: withdrowAmount)
+                        TransactionUtil.saveTransaction(transactionToSave: transaction)
                     case 4:
                         print("Transfer the money to another account")
                         print("Please Enter the account number to which to transfer:")
@@ -264,7 +271,12 @@ func clientOption(){
                         let trAmount = Double(readLine()!)!
                         account.transferMoney(sum: trAmount, acc: trAcc)
                         AccountUtil.saveAccount(accountToSave: account)
+                        let transactionOut = Transaction(accountId: account.accountId, transactionType: "transfer out", transactionId: nextTransaction(), amount: -trAmount)
+                        TransactionUtil.saveTransaction(transactionToSave: transactionOut)
+                        
                         AccountUtil.saveAccount(accountToSave: trAcc)
+                        let transactionIn = Transaction(accountId: trAccNo, transactionType: "transfer in", transactionId: nextTransaction(), amount: trAmount)
+                        TransactionUtil.saveTransaction(transactionToSave: transactionIn)
                     case 5:
                         print("Pay Bill")
                         //print("Please Enter the number of the bill:")
@@ -273,6 +285,8 @@ func clientOption(){
                         let withdrowAmount = Double(readLine()!)!
                         account.takeMoney(sum: withdrowAmount)
                         AccountUtil.saveAccount(accountToSave: account)
+                        let transaction = Transaction(accountId: account.accountId, transactionType: "payment", transactionId: nextTransaction(), amount: withdrowAmount)
+                        TransactionUtil.saveTransaction(transactionToSave: transaction)
                     case 6:
                         optCl = false
                     default:
@@ -310,34 +324,3 @@ repeat{
     print("Do you want enter whith another User? yes/no")
 }while(readLine()!=="yes")
 print("Thanks... 😊")
-
-/*
- for client: show the menu:
- 
- 1 - get account details -- by accountId or by clientId
- 2 - deposit the money to specific account (by accountId)
- 3 - draw the money from specific account (by accountId)
- 4 - transfer the money to another account
- 5 - pay the bills
- 
- 
- for bank worker:
- 
- 1 - create an account (ask all data) - save to file
- 2 - update the user - save to file
- 3 - get account details -- by accountId or by clientId
- 4 - deposit the money to specific account (by accountId)
- 5 - draw the money from specific account (by accountId)
- 6 - transfer the money to another account
- 7 - pay the bills
- */
-//
-//let account = Account(accountId: 1, clientId: 1, accountType: "Saving", amount: 100000, withdraw: true)
-//let account2 = Account(accountId: 2, clientId: 1, accountType: "Checking", amount: 1000, withdraw: true)
-//let account3 = Account(accountId: 3, clientId: 1, accountType: "Saving", amount: 256000, withdraw: true)
-//let account4 = Account(accountId: 4, clientId: 1, accountType: "Saving", amount: 256000, withdraw: true)
-
-//AccountUtil.saveAccount(accountToSave: account)
-//AccountUtil.saveAccount(accountToSave: account2)
-//AccountUtil.saveAccount(accountToSave: account3)
-//AccountUtil.saveAccount(accountToSave: account4)
