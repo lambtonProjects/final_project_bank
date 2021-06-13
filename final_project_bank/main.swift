@@ -245,6 +245,8 @@ func clientOption(){
                     switch menu {
                     case 1:
                         print("Get account details")
+                        print("Your account number is: ",account.accountId)
+                        print("Your account type is: ",account.accountType)
                         print("Your current balance is: ",account.getBalance())
                     case 2:
                         print("Deposit the money")
