@@ -14,7 +14,6 @@
 		EB2C50E4266FF58500B9E4C2 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2C50E3266FF58500B9E4C2 /* main.swift */; };
 		EB736BB22671E0F000CC7190 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB736BB12671E0F000CC7190 /* User.swift */; };
 		EB736BB42671E13E00CC7190 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB736BB32671E13E00CC7190 /* Client.swift */; };
-		EB736BB62671E16D00CC7190 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB736BB52671E16D00CC7190 /* Operator.swift */; };
 		EB83E37A2670F59B00E5AF8E /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB83E3792670F59B00E5AF8E /* Account.swift */; };
 		EBFDE5742672CC4C0000AF3E /* ClientUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFDE5732672CC4C0000AF3E /* ClientUtil.swift */; };
 		EBFDE5762672CC990000AF3E /* TransactionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFDE5752672CC990000AF3E /* TransactionUtil.swift */; };
@@ -42,7 +41,6 @@
 		EB2C50E3266FF58500B9E4C2 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		EB736BB12671E0F000CC7190 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EB736BB32671E13E00CC7190 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
-		EB736BB52671E16D00CC7190 /* Operator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operator.swift; sourceTree = "<group>"; };
 		EB83E3792670F59B00E5AF8E /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		EBFDE5732672CC4C0000AF3E /* ClientUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientUtil.swift; sourceTree = "<group>"; };
 		EBFDE5752672CC990000AF3E /* TransactionUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionUtil.swift; sourceTree = "<group>"; };
@@ -106,7 +104,6 @@
 				EB2C50E3266FF58500B9E4C2 /* main.swift */,
 				EB736BB12671E0F000CC7190 /* User.swift */,
 				EB736BB32671E13E00CC7190 /* Client.swift */,
-				EB736BB52671E16D00CC7190 /* Operator.swift */,
 			);
 			path = final_project_bank;
 			sourceTree = "<group>";
@@ -177,7 +174,6 @@
 				EBFDE5782672F31F0000AF3E /* Transaction.swift in Sources */,
 				EB736BB22671E0F000CC7190 /* User.swift in Sources */,
 				46D0E83E2671BF9600A8DF98 /* CheckingAccount.swift in Sources */,
-				EB736BB62671E16D00CC7190 /* Operator.swift in Sources */,
 				46D0E8402671BFA100A8DF98 /* SavingAccount.swift in Sources */,
 				46D0E8432671C05D00A8DF98 /* FileUtil.swift in Sources */,
 			);

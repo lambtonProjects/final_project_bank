@@ -16,19 +16,13 @@ func createClient(){
     let userId=Int(readLine()!)!
     print("Insert Name:")
     let name=readLine()!
-    print("Choose:\n1.Client\n2.User")
-    if Int(readLine()!)! == 1{
-        print("Enter Phone:")
-        let phone=Int(readLine()!)!
-        print("Enter Address:")
-        let address=readLine()!
-        let client=Client(userId: userId, userName: name, phone: phone, address: address)
-        ClientUtil.saveClient(clientToSave: client)
-    }else{
-        print("Enter Alias:")
-        let alias=readLine()!
-        userList.append(Operator(userId: userId, userName: name, alias: alias))
-    }
+    print("Enter Phone:")
+    let phone=Int(readLine()!)!
+    print("Enter Address:")
+    let address=readLine()!
+    let client=Client(userId: userId, userName: name, phone: phone, address: address)
+    ClientUtil.saveClient(clientToSave: client)
+
 }
 
 //Function to create account for a user that already exists
