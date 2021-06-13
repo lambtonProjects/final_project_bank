@@ -10,7 +10,6 @@ class Account {
     
     var accountId: Int
     var clientId: Int
-    //var clientName: String
     var accountType: String
     var amount: Double
     var withdraw:Bool
@@ -19,7 +18,6 @@ class Account {
     init(accountId: Int, clientId: Int, accountType: String, amount: Double, withdraw:Bool){
         self.accountId = accountId
         self.clientId = clientId
-        //self.clientName = clientName
         self.accountType = accountType
         self.amount = amount
         self.withdraw = withdraw
@@ -49,6 +47,7 @@ class Account {
         //todo: add update to file
     }
     
+    //prints the information about this account
     func printDetails(){
         print("accountId:\(self.accountId)    clientId:\(self.clientId)   accountType:\(self.accountType)   amount:\(self.amount)   withdraw:\(self.withdraw)")
     }

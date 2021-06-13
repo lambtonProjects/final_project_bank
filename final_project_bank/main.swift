@@ -302,6 +302,8 @@ func clientOption(){
     } while optCl == true
 }
 
+// the main function starts here
+
 print("🏢 The Bank 🏢")
 repeat{
     // Ask from user which type of user he is:
