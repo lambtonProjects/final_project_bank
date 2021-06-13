@@ -8,7 +8,6 @@
 import Foundation
 var optBw = true
 var optCl = true
-var userList = [User]()
 
 //Funtion to create a new Client or User*
 func createClient(){
@@ -27,16 +26,21 @@ func createClient(){
 
 //Function to create account for a user that already exists
 func createBankAcount(client: Client){
-    print("Insert account identified number:")
-    let accountId=Int(readLine()!)!
-    
-    print("Choose:\n1.Checkings\n2.Savings")
-    if Int(readLine()!)! == 1{
-        let account=CheckingAccount(accountId: accountId, clientId: client.userId)
-        AccountUtil.saveAccount(accountToSave: account)
+    let (x,_)=validAcountExist(client: client)
+    if x<2 {
+        print("Insert account identified number:")
+        let accountId=Int(readLine()!)!
+        
+        print("Choose:\n1.Checkings\n2.Savings")
+        if Int(readLine()!)! == 1{
+            let account=CheckingAccount(accountId: accountId, clientId: client.userId)
+            AccountUtil.saveAccount(accountToSave: account)
+        }else{
+            let account = SavingAccount(accountId: accountId, clientId: client.userId)
+            AccountUtil.saveAccount(accountToSave: account)
+        }
     }else{
-        let account = SavingAccount(accountId: accountId, clientId: client.userId)
-        AccountUtil.saveAccount(accountToSave: account)
+        print("⚠️You exceeded the allowed account limit⚠️")
     }
 }
 
@@ -49,40 +53,62 @@ func findUser(number:Int, clientList:[User])->User!{
     return nil
 }
 
-//Func to find one especific account with the client information
+//Func to find especific account with the client information and print it
 func findAccountBy(client: Client){
-    let accountList = AccountUtil.getAccounts()
-    for account in accountList {
-        if account.clientId == client.userId {
-            print("Accounts 💵")
-            account.printDetails()
+    let (x,accountList)=validAcountExist(client: client)
+    if x>0 {
+        for account in accountList {
+            if account.clientId == client.userId {
+                print("Accounts 💵")
+                account.printDetails()
+            }
         }
+    }else{
+        print("⚠️Client does not have accounts ⚠️")
     }
 }
 
-//Func to find one especific account with the account number and show all information aviable including balance
-func findAccountBy(number:Int){
+//Func to find a list for a especific client account information and print it
+func validAcountExist(client: Client) -> (Int, [Account]){
+    var clientAccountList = [Account]()
     let accountList = AccountUtil.getAccounts()
     for account in accountList {
-        let accountId = account.accountId
-        if accountId == number {
-            print("\nAccount Info ℹ️")
-            account.printDetails()
-            print("Statements 💵")
-            print("transactionId       transactionType     accountId           amount")
-            listTransaction(accountId : accountId)
-        }else{
-            print("⚠️This account does not exist⚠️")
-        }
+        if account.clientId == client.userId {
+            clientAccountList.append(account)
+         }
     }
+    return (clientAccountList.count, clientAccountList)
+}
+
+
+//Func to find one especific account with the account number and show all information aviable including balance
+func findAccountBy(number:Int) -> (Int, [Account]){
+    var clientAccountList = [Account]()
+    let accountList = AccountUtil.getAccounts()
+    for account in accountList {
+        if account.accountId == number {
+            clientAccountList.append(account)
+         }
+    }
+    return (clientAccountList.count, clientAccountList)
 }
 
 //Func to list all transacctions given account ID
 func listTransaction(accountId : Int){
     let transactionList = TransactionUtil.getTransacctions()
+    var transactionListByAccount = [Transaction]()
     for transaction in transactionList {
         if transaction.accountId == accountId {
-            transaction.printDetails()
+            transactionListByAccount.append(transaction)
+        }
+    }
+    if transactionListByAccount.count == 0 {
+        print("⚠️This account has no transactions⚠️")
+    }else{
+        print("Statements 💵")
+        print("transactionId       transactionType     accountId           amount")
+        for item in transactionListByAccount {
+            item.printDetails()
         }
     }
 }
@@ -94,8 +120,8 @@ func bankWorkerOption(){
         print("2. Update Client")
         print("3. Create Bank Account")
         print("4. List all Clients")
-        print("5. Show details of a client")
-        print("6. Show details/transactions of a account")
+        print("5. List details of a client")
+        print("6. List transactions from an account")
         print("7. Exit")
         print("///////////////////////////////////////////////////////////////////////")
         print("Choose...")
@@ -120,26 +146,26 @@ func bankWorkerOption(){
                     let clientUpdate=Client(userId: client!.userId, userName: client!.userName, phone: phone, address: address)
                     ClientUtil.saveClient(clientToSave: clientUpdate)
                 }else{
-                    print("the identifier number is not from a client ⛔️\n")
+                    print("⚠️The identifier number is not from a client ⚠️\n")
                 }
             }else{
-                print("the client does not exist ⛔️\n")
+                print("⚠️The client does not exist ⚠️\n")
             }
         case 3:
             print("Find identified number: ")
             let no=Int(readLine()!)!
             let clientList = ClientUtil.getClients()
-            
             let client=findUser(number: no, clientList: clientList)
+            
             if client != nil {
                 client?.printDetails()
                 if client is Client {
                     createBankAcount(client: client! as! Client)
                 }else{
-                    print("the identifier number is not from a client ⛔️\n")
+                    print("⚠️The identifier number is not from a client ⚠️\n")
                 }
             }else{
-                print("the client does not exist ⛔️\n")
+                print("⚠️The client does not exist ⚠️\n")
             }
         case 4:
             print("List all Client ")
@@ -151,22 +177,30 @@ func bankWorkerOption(){
             print("Find identified number: ")
             let no=Int(readLine()!)!
             let clientList = ClientUtil.getClients()
-            
             let client=findUser(number: no, clientList: clientList)
             if client != nil {
                 client?.printDetails()
                 if client is Client {
                     findAccountBy(client: client! as! Client)
                 }else{
-                    print("the identifier number is not from a client ⛔️\n")
+                    print("⚠️The identifier number is not from a client ⚠️\n")
                 }
             }else{
-                print("the client does not exist ⛔️\n")
+                print("⚠️The client does not exist ⚠️\n")
             }
         case 6: //Show details/transactions of a account
             print("Find identified account number: ")
             let no=Int(readLine()!)!
-            findAccountBy(number: no)
+            let (x,y)=findAccountBy(number: no)
+            if x == 0{
+              print("⚠️This account does not exist⚠️")
+            }else{
+                for item in y {
+                    print("\nAccount Info ℹ️")
+                    item.printDetails()
+                    listTransaction(accountId: item.accountId)
+                }
+            }
         case 7:
             optBw = false
         default:
@@ -215,7 +249,7 @@ func clientOption(){
                 let accArray = AccountUtil.getAccounts()
                 print("/////////////////////////////////////\n")
                 if accArray.isEmpty {
-                    print("You have no accounts")
+                    print("⚠️You have no accounts⚠️")
                     optCl = false
                 } else {
                     let clientAccounts = getClientAccounts(arrAccounts: accArray, clientId: clientNo)
@@ -231,7 +265,8 @@ func clientOption(){
                     print("3. Withdraw")
                     print("4. Transfer to another account")
                     print("5. Pay Bill")
-                    print("6. Exit")
+                    print("6. List transactions")
+                    print("7. Exit")
                     print("///////////////////////////////////////////////////////////////////////")
                     print("Choose the operation")
                     let menu = Int(readLine()!)!
@@ -284,6 +319,8 @@ func clientOption(){
                         let transaction = Transaction(accountId: account.accountId, transactionType: "payment", transactionId: nextTransaction(), amount: withdrowAmount)
                         TransactionUtil.saveTransaction(transactionToSave: transaction)
                     case 6:
+                        listTransaction(accountId: accNo)
+                    case 7:
                         optCl = false
                     default:
                         print("Wrong Option⛔️")
@@ -292,7 +329,7 @@ func clientOption(){
                 
             }
         } else {
-                print("This client number does not exists in the system")
+                print("⚠️This client number does not exists in the system⚠️")
             }
         
     } while optCl == true

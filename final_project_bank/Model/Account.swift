@@ -36,7 +36,12 @@ class Account {
     
     // Draw the money from the account
     func takeMoney(sum: Double) {
-        self.amount = self.amount - sum
+        let validWithdraw = self.amount*0.10
+        if sum > validWithdraw && !self.withdraw{
+            print("⚠️You cannot withdraw more than 10% from your savings account⚠️")
+        }else{
+            self.amount = self.amount - sum
+        }
         //todo: add update to file
     }
     
