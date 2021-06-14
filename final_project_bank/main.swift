@@ -25,7 +25,7 @@ func createClient(){
 }
 
 //Function to create account for a user that already exists
-func createBankAcount(client: Client){
+func createBankAccount(client: Client){
     let (x,_)=validAcountExist(client: client)
     if x<2 {
         print("Insert account identified number:")
@@ -160,7 +160,7 @@ func bankWorkerOption(){
             if client != nil {
                 client?.printDetails()
                 if client is Client {
-                    createBankAcount(client: client! as! Client)
+                    createBankAccount(client: client! as! Client)
                 }else{
                     print("⚠️The identifier number is not from a client ⚠️\n")
                 }

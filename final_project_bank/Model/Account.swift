@@ -31,7 +31,6 @@ class Account {
     // Deposit money to account
     func addMoney(sum: Double) {
         self.amount = self.amount + sum
-        //todo: add update to file
     }
     
     // Draw the money from the account
@@ -42,14 +41,12 @@ class Account {
         }else{
             self.amount = self.amount - sum
         }
-        //todo: add update to file
     }
     
     // transfer the money to other account
     func transferMoney(sum: Double, acc: Account) {
         self.amount = self.amount - sum
         acc.amount = acc.amount + sum
-        //todo: add update to file
     }
     
     //prints the information about this account
