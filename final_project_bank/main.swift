@@ -57,9 +57,9 @@ func findUser(number:Int, clientList:[User])->User!{
 func findAccountBy(client: Client){
     let (x,accountList)=validAcountExist(client: client)
     if x>0 {
+        print("Accounts 💵")
         for account in accountList {
             if account.clientId == client.userId {
-                print("Accounts 💵")
                 account.printDetails()
             }
         }
