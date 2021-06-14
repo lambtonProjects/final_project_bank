@@ -125,8 +125,8 @@ func bankWorkerOption(){
         print("7. Exit")
         print("///////////////////////////////////////////////////////////////////////")
         print("Choose...")
-        let menu = Int(readLine()!)!
-        switch menu {
+        let menu = readLine()!
+        switch Int(menu) {
         case 1:
             createClient()
         case 2:
