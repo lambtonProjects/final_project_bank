@@ -1,4 +1,6 @@
-# Description:
+# final_project_bank
+
+## Description:
 
 A simulation of a primitive banking system that allows the user to create bank accounts for clients, and allow them to do some of the bank transactions.
 The client can have multiple accounts with different types and the clients should be able to:
@@ -22,19 +24,19 @@ The system can do the following:
 # Test data
 In the documents directory of the mac system
 
-## client.txt
+###### client.txt
 ```bash
 1234567,Rick Sanchez,816090234,1683  Findlay Creek Road
 7654321,Morty Smith,2504299690,1683  Findlay Creek Road
 6543217,Summer Smith,4162293911,4095  Dundas St
 ```
-## acounts.txt
+###### acounts.txt
 ```bash
 111987654,1234567,savings,1300.0,false
 111123456,1234567,checking,500.0,true
 222654321,6543217,savings,700.0,false
 ```
-## transaction.txt
+###### transaction.txt
 ```bash
 111123456,deposit,4123,1000.0
 111123456,draw,198,100.0
